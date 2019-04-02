@@ -52,4 +52,5 @@
 ```
     ifconfig DEV up
 ```
-6. 测试：
+6. 测试：在ping命令执行过程中，断开bonding中一块网卡的连接，可以看到在极短时间内恢复了连接
+![avagar](https://github.com/aNswerO/note/blob/master/5th-week/pic/bonding.png)
