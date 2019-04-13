@@ -93,7 +93,11 @@
     + ARGC：命令行参数的个数
     + ARGV：保存着命令行给出参数组成的数组，编号从**0**开始
 + 自定义变量（区分字符大小写）：
-1. -v var=value
+1. -v var=value；这种定义的方法使得awk可以调用shell中定义的变量
+    ```shell
+       awk -v var=$VAR '{ACTION}' /PATH/TO/FILE 
+       #此命令中的VAR就是shell中的变量
+    ```
 2. 在program中直接定义
 # 操作符：
 + 算术操作符：
