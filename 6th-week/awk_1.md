@@ -97,3 +97,117 @@
 2. 在program中直接定义
 # 操作符：
 + 算术操作符：
+```
+    + , - , * , / , ^ , %
+
+    - x：把X转换成负数
+    + x：将字符串转换为数值
+```
++ 字符串操作符：
+    + 无符号操作符时，可以实现字符串连接的效果
+    ```
+    [root@localhost test]#awk 'BEGIN{a=100;b=100;c=(a""b);print c}'
+    100100
+    ```
++ 赋值操作符：
+```
+    = , += , -= , *= , /= , %= , ^= , ++ , --
+
+    [root@localhost test]#awk 'BEGIN{i=0;print ++i;i}'
+    1
+
+    [root@localhost test]#awk 'BEGIN{i=0;print i++;i}'
+    0
+
+```
+>++与i的位置关系导致结果不同，++i是在print之前先自增，i++是在print之后自增
++ 比较操作符：
+```
+    == , != , > , >= , < , <=
+```
++ 模式匹配符：
+    + ~：左边是否与右边匹配（模糊匹配）
+
+    + !~：是否不匹配
+    + 示例：
+    ```shell
+        awk -F: '$0 ~ /root/{print $1}' /etc/passwd
+        #以冒号为分隔符，取出行内有root的行中第一个字段的内容（此处为用户名）
+
+        awk '$0 ~ "^root"' /etc/passwd
+        #打印出以root开头的行
+
+        awk '$0 !~ /root/' /etc/passwd
+        #打印出所有不以root开头的行
+
+        awk -F: '$3==0' /etc/passwd
+        #打印出第三字段（此处即UID）为0的行
+    ```
++ 逻辑操作符：
+    + &&：与
+    + ||：或
+    + !：非
+    + 示例：
+    ```shell
+        awk -F: '$3>=0 && $3<=1000{print $1}' /etc/passwd
+        #以冒号为分隔符，打印出第三字段（此处即UID）在0~1000范围内（闭区间）的行的第一个字段（此处即用户名）
+
+        awk -F: '$3==0 || $3>=1000{print $1}' /etc/passwd
+        #以冒号为分隔符，打印出第三字段（此处即UID）等于0或者大于1000的行的第一字段（此处即用户名）
+
+        awk -F '!($3==0){print $1}' /etc/passwd
+        #以冒号为分隔符，打印出第三字段不为0的行的第一字段
+
+        awk -F: '!($3>=500){print $3}' /etc/passwd
+        #以冒号为分隔符，打印出第三字段大于等于500的行的第三字段
+    ```
++ 条件表达式（三目表达式）：
+```
+    selector?if-ture-expression:if-false-expression
+
+    selector：判断条件
+    if-ture-expression：判断条件为真时执行的表达式
+    if-false-expression：判断条件为假时执行的表达式
+```
++ PATTERN：
+>根据pattern条件，过滤匹配的行，再做处理
++ 若未指定：即为空模式，匹配每一行
++ /regular expression/：仅处理能够模式匹配到的行，//中使用正则表达式
++ 关系表达式：结果为真才会处理
+    + 真：结果为非0、非空值
+    + 假：结果为空或0
+    + 示例：
+    ```shell
+        awk -F: '$NF=="/bin/bash"{print $1,$NF}' /etc/passwd
+
+        #以冒号为分隔符，精确匹配找出每行最后一个字段为/bin/bash的行，打印出这些行的第一个和最后一个字段
+
+        awk -F: '$NF ~ /bash$/{print $1,$NF}' /etc/passwd
+
+        #以冒号为分隔符，找出以bash结尾的行，并打印出这些行的第一个字段和最后一个字段
+    ```
++ 行范围：
+    /startline/,/endline/：指定起始行和结束行
+    + 示例：
+    ```shell
+        awk -F: '/^root/,/^nobody/{print $1}' /etc/passwd
+        #打印出/etc/passwd行首为root与行首为nobody中间的行
+
+        awk -F: '(NR>=10&&NR<=20){print NR,$1}' /etc/passwd
+        #打印出/etc/passwd文件的第10行（包含）到第20行（包含）中间的行
+    ```
++ BEGIN\END模式：
+    + BEGIN：仅在开始处理文本之前执行一次
+    + END：仅在文本处理完成之后执行一次
+    + 示例：
+    ```shell
+        awk -F: 'BEGIN{print "user userid"}{print $1":"$3}END{print "END"}' /etc/passwd
+        #在处理文本前先打印user userid，然后处理文本，以冒号为分隔符，打印出每行的的第一、三字段，最后打印END
+    ```
++ 常用的action分类：
+    1. expressions：算术、比较表达式等
+
+    2. control statements：if、while等
+    3. compound statements：组合语句
+    4. input statements
+    5. output statements：print等
