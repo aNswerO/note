@@ -275,3 +275,119 @@
 ```
     ARRAY_NAME[${#ARRAY_NAME[*]}]=VALUE
 ```
+# 字符切片：
+```
+    ${#VAR}：返回字符串变量VAR的长度
+
+    ${VAR:OFFEST}：返回字符串变量VAR中从第OFFEST个字符后（不包括第OFFEST个字符）到最后的部分
+
+    ${VAR:OFFEST:NUMBER}：返回字符串变量VAR中从第OFFEST个字符后（不包括第OFFEST个字符）NUMBER个字符
+
+    ${VAR: -LENGTH}：返回字符串变量最右侧的LENGTH个字符
+
+    ${VAR:OFFEST:-LENGTH}：从左侧第OFFSET个字符开始，一直取到倒数第LENGTH个之前的字符
+
+    ${VAR: -LENGTH:OFFSET}：从（包括）倒数第LENGTH个字符开始，一直取OFFEST个字符
+```
+## 基于模式取子串：
+```
+    ${VAR#*WORD}：删除从第一个字符开始，到所匹配到的WORD（包含）之间的所有字符
+
+    ${VAR##*WORD}：删除从第一个字符开始，到最后一次匹配到的WORD之间的所有字符，即贪婪模式
+
+    ${VAR%WORD*}：删除从倒数第一个字符开始，到所匹配到的WORD（包含）之间的所有字符
+    
+    ${VAR%%WORD*}：删除从倒数第一个字符开始，到最后一次匹配到的WORD之间的所有字符，即贪婪模式
+```
+## 查找替换：
+```
+    ${VAR/PATTERN/SUBSTR}：查找VAR变量所表示的字符串中第一个匹配PATTERN的内容，替换为SUBSTR中的内容
+
+    ${VAR//PATTERN/SUBSTR}：查找VAR变量所表示的字符串中所有匹配PATTERN的内容，全部替换为SUBSTR中的内容
+
+    ${VAR/#PATTERN/SUBSTR}：查找VAR所表示的字符串中行首被PATTERN匹配的字符串，将其替换为SUBSTR
+
+    ${VAR/%PATTERN/SUBSTR}：查找VAR所表示的字符串中行尾被PATTERN所匹配的字符串，将其替换为SUBSTR
+```
+## 查找删除：
+```
+    ${VAR/PATTERN}：删除VAR所表示的字符串中第一次被PATTERN匹配到的字符串
+
+    ${VAR//PATTERN}：删除VAR所表示的字符串中所有被PATTERN匹配到的字符串
+
+    ${VAR/#PATTERN}：删除VAR所表示的字符串中行首被PATTERN匹配到的字符串
+
+    ${VAR/#PATTERN}：删除VAR所表示的字符串中行尾被PATTERN匹配到的字符串
+```
+## 字符大小写转换：
+```
+    ${VAR^^}：把VAR所表示的字符串中所有小写字母转换为大写
+
+    ${VAR,,}：把VAR所表示的字符串中所有大写字母转换为小写
+```
+# 定义有类型变量--declare：
+```
+    declare [OPTION] VAR_NAME
+        -r：声明或显示只读变量
+        -i：将变量定义为整型
+        -a：将变量定义为数组
+        -A：将变量定义为关联数组
+        -f：显示已定义的所有函数名和其内容
+        -F：仅显示已定义的所有函数名
+        -x：声明或显示环境变量和函数
+        -l：声明变量为小写字母
+        -u:声明变量为大写字母
+```
+# eval命令：
+>先扫描命令进行其中的所有置换，然后再执行命令；适用于一次扫描无法实现其功能的变量
++ 示例：
+```
+    n=10
+    eval echo {1..$n}
+```
+# 间接变量引用：
+1. 
+```
+    eval TEMPVAR=\$$VAR
+```
+2. 
+```
+    TEMPVAR=${!VAR}
+```
+# expect命令：
+>借助expect处理交互式的命令，可将交互过程自动化执行;主要用于自动化交互式操作，如将ssh、ftp的登录写在脚本上
+```
+    expect [OPTION] [-c CMD] [[ -[f|b] ]CMDFILE ] [ARGS]
+        -c：从命令行执行expect脚本，默认expect是交互运行的
+        -d：可以输出调试信息
+```
+## expect中的相关命令：
+```
+    spawn：启动新的进程
+    send：用于向进程发送字符串
+    expect：从进程接受字符串
+    interact：允许用户交互
+    exp_continue：匹配多个字符串在执行动作后加此命令
+```
+## expect常用语法：
++ 单分支：
+```shell
+    expect -c 'expect "hi" {send "you said hi\n"}' #使用-c选项在命令行执行expect命令，当标准输入中出现hi时，输出you said hi
+```
++ 多分支：
+```shell
+    expect -c 'expect "hi" {send "you said hi\n"}\
+                      "hehe" {send "hhhhhhh\n"}\
+                      "haha" {send "xzxcz\n"}'
+    #使用-c选项在命令行执行expect命令，当标准输入中出现hi、hehe或haha时，分别输出hi、hhhhhhh、xzxcz
+```
+## 示例：
+```shell
+    #!/usr/bin/expect
+    spawn scp /etc/fstab 172.22.150.150:/data
+    expect {
+        "yes/no" {send "yes\n";exp_continue}
+        "password" {send "123456\n"}
+    }
+    expect eof
+```
