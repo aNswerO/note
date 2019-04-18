@@ -27,7 +27,7 @@
 ```
 3. 颁发证书：
 >在需要使用证书的主机生成证书请求
-+ 服务器生成私钥:
++ 客户端生成私钥:
 ```shell
     umask 066;openssl genrsa -out ~/test/test.key 2048
 ```
