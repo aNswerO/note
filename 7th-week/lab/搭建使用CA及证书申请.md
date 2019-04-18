@@ -39,7 +39,7 @@
 
 + CA签署证书，并将证书颁发给请求者：
 ```shell
-    openssl ca -in /PATH/TO/CSR_FILE /etc/pki/CA/certs/test.crt -days 365 #默认要求国家、省、公司名三项必须和CA一致
+    openssl ca -in /PATH/TO/CSR_FILE -out /etc/pki/CA/certs/test.crt -days 365 #默认要求国家、省、公司名三项必须和CA一致
 ```
 4. 查看证书中的信息：
 ```shell
@@ -50,7 +50,7 @@
 ```
     openssl x509 -in /PATH/FORM/CERT_FILE -noout -serial -subject
 ```
-+ 在CA上根据客户日交的serial与subject信息，对比检验是否与index.txt中的信息一致
++ 在CA上根据客户提交的serial与subject信息，对比检验是否与index.txt中的信息一致
 + 吊销证书：
 ```
     openssl ca -revoke /etc/pki/CA/newcerts/SERIAL.pem
