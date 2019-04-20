@@ -1,0 +1,32 @@
+default menu.c32
+timeout 600
+
+
+menu tabmsg Press Tab for full configuration options on menu items.
+
+menu separator # insert an empty line
+menu separator # insert an empty line
+menu title Auto Install CentOS
+label CentOS7
+	menu label Install CentOS ^Mini 7
+	kernel vmlinuz
+	append initrd=initrd.img ks=http://192.168.1.142/ks/ks7-mini.cfg
+
+label rescue
+  menu indent count 5
+  menu label ^Rescue a CentOS system
+  text help
+	If the system will not boot, this lets you access files
+	and edit config files to try to get it booting again.
+  endtext
+  kernel vmlinuz
+  append initrd=initrd.img inst.stage2=hd:LABEL=CentOS\x207\x20x86_64 rescue quiet
+
+label local
+  menu label Boot from ^local drive
+  localboot 0xffff
+
+menu separator # insert an empty line
+menu separator # insert an empty line
+
+menu end
