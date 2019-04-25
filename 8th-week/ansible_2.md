@@ -155,7 +155,7 @@
         ansible-doc -s MODULE   #查看指定模块的简要帮助
     ```
 # ansible-galaxy命令：
-+ 连接(https://galaxy.ansible.com)下载相应的roles
++ 连接此网站下载相应的roles：https://galaxy.ansible.com
 ```shell
     ansible-galaxy list    #列出所有已安装的galaxy
     ansible-galaxy install geerlingguy.redis  #安装galaxy
