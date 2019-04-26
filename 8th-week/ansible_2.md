@@ -299,3 +299,38 @@ yaml文件需和template目录平级
     + 列表格式：
         + 字符串
         + 字典
+### roles：角色
+>通过分别将变量、文件、任务、模板及处理器放置于单独的目录中，以便携控制它们的一种机制
++ 功能：用以层次化、结构性地组织playbook
+
++ 使用场景：
+    1. 变更指定主机或主机组
+    2. 某些功能需要多个playbook，可通过include实现
+    3. 命名不规范的管理
++ 目录结构：每个角色以特定的层级目录结构进行组织
++ 各目录作用：
+    + /roles/project/：项目名称，有以下子目录
+        + files/：存放由copy或scripts模块等调用的文件
+
+        + templates/：template模块查找所需模板文件的目录
+        + tasks/：定义task、role的基本元素，至少应该包含一个main.yml
+        + handles/：至少要有main.yml文件；其他文件需要在此文件中用include进行包含
+        + vars/：定义变量，至少要有main.yml文件；其他文件需要在此文件中用include进行包含
+        + meta/：定义当前角色的特殊设定和依赖关系；至少要有main.yml文件，其他文件需要在此文件中用include进行包含
+        + default/：设定默认变量时使用此目录中的main.yml
++ 创建role的步骤：
+    1. 创建以roles命名的目录
+
+    2. 在roles目录中分别创建以各角色名称命名的目录
+    3. 在每个角色名称命名的目录下创建meta/、files/、tasks/等目录；用不到的目录可以创建为空目录，不创建也可以
+    4. 在playbook中调用角色
++ 在playbook中调用角色的方法：
+    1. 在yml文件中的roles字段中直接给出角色名称来调用
+
+    2. 使用字典的形式将变量传递给角色；**键**用于指定角色名，**值**用来给角色传递变量
+    3. 基于条件测试实现角色调用
+        + 示例：
+        ```
+        roles:
+          - { role: nginx, username:nginx, when: ansible_distribution_major_vesion == '7' }
+        ```
