@@ -184,3 +184,80 @@
     + ip socket：监听在tcp的3306端口，用于远程通信
     + unix socket：监听在sock文件（/var/lib/mysql/mysql.sock）上，用于本机进程间通信
     >host为localhost（127.0.0.1）时，自动使用unix sock
+## MySQL中的系统数据库：
++ mysql：
+
+>MySQL中的核心数据库，主要负责存储数据库的用户、权限设置、关键字等MySQL需要使用的控制和管理信息
++ performance_schema：
+>主要用于收集数据库服务器性能参数；库中表使用的存储引擎为performance_schema，用户不能创建存储引擎为performance_schema的表
++ information_schema：
+>虚拟数据库，提供了访问数据库元数据的方式，即数据的数据（数据库名和表名、列类型、访问权限）
+## MySQL服务器配置相关：
++ 配置文件中mysqld段：内容为服务器系统变量和状态变量
+>服务器有些参数（会话级）支持服务运行时修改，会立即生效，但不会永久生效，退出会话会失效；有些参数不支持，只能修改配置文件后重启服务使之永久生效；有些参数的作用域为全局，且无法改变；有些则可为每个用户提供单独的设置（会话）
++ 获取mysqld的可用选项列表：
+```shell
+    mysqld --help --verbose
+    mysqld --print-defaults    #获取默认设置
+```
++ 设置服务器选项的方法：
+    + 命令行设置：
+    ```shell
+        ./msyqld-safe --skip-name-resolve=1
+        #关闭DNS反向解析
+    ```
+    + 在配置文件中设置：
+    ```
+        vim /etc/my.cnf
+
+        [mysqld]
+        skip-name-resolve=1
+    ```
+## MySQL服务器变量：
++ 服务器系统变量：全局和会话
+    + 查看系统变量：
+    ```
+        mysql> SHOW GLOBAL VARIABLES;
+        mysql> SHOW [SESSION] VARIABLES;
+        mysql> SELECT @@VARIABLES;
+    ```
+    + 修改服务器变量的值：
+    ```
+        msyql> SET var_name=expr
+    ```
+    + 修改全局变量：
+    >仅对修改之后新创建的会话有效
+    ```
+        mysql> SET GLOBAL var_name=value
+        mysql> SET @@global.var_name=value
+    ```
+    + 修改会话变量：
+    ```
+        mysql> SET [SESSION] var_name=value
+        mysql> SET @@[SESSION.] var_name=value
+    ```
++ 服务器状态变量：全局和会话
+>只读；用于保存mysqld运行中的统计数据的变量
+```
+    msyql> SHOW GLOBAL STATUS;
+    mysql> SHOW [SESSION] STATUS;
+```
+## 服务器变量SQL_mode：
+>定义了MySQL支持的SQL语法；对其进行设置可以完成一些约束检查的工作，可分别进行全局的设置和当前会话的设置
++ 常见mode：
+```shell
+   NO_AUTO_CREATE_USER    
+   #禁止GRANT创建密码为空的用户
+   
+   NO_ZERO_TIME    
+   #禁止使用'0000-00-00'的时间
+   
+   ONLY_FULL_GROUP_BY    
+   #对于GROUP BY的聚合操作，如果在SELECT语句中没有出现GROUP BY，则认为此SQL语句是不合法的
+   
+   NO_BACKSLASH_ESCAPES
+   #"\"视为普通字符而非转义字符
+   
+   PIPES_AS_CONCAT
+   #'|'视为连接操作而非“或”运算符
+```
