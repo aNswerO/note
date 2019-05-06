@@ -122,7 +122,7 @@
 ```
 13. 显示其成绩高于80的同学的名称及课程
 ```
-    MariaDB [hellodb]> SELECT st.name,co.course FROM students AS st INNER JOIN scores AS sc on st.stuid=sc.stuid INNER JOIN courses AS co ON sc.courseid=co.courseid WHERE sc.score>88;
+    MariaDB [hellodb]> SELECT st.name,co.course FROM students AS st INNER JOIN scores AS sc on st.stuid=sc.stuid INNER JOIN courses AS co ON sc.courseid=co.courseid WHERE sc.score>80;
 ```
 14. 取每位同学各门课的平均成绩，显示成绩前三名的同学的姓名和平均成绩
 ```
