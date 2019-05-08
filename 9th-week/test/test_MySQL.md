@@ -126,7 +126,7 @@
 ```
 14. 取每位同学各门课的平均成绩，显示成绩前三名的同学的姓名和平均成绩
 ```
-    MariaDB [hellodb]> SELECT st.name,avg(sc.score) FROM students AS st INNER JOIN scores AS sc ON st.stuid=sc.stuid INNER JOIN courses AS co ON sc.courseid=co.courseid GROUP BY st.stuid LIMIT 3;
+    MariaDB [hellodb]> SELECT st.name,avg(sc.score) FROM students AS st INNER JOIN scores AS sc ON st.stuid=sc.stuid INNER JOIN courses AS co ON sc.courseid=co.courseid GROUP BY st.stuid order by avg(sc.score) desc LIMIT 3 ;
 ```
 15. 显示每门课程课程名称及学习了这门课的同学的个数
 ```
@@ -138,7 +138,7 @@
 ```
 17. 显示其学习的课程为第1、2，4或第7门课的同学的名字
 ```
-    MariaDB [hellodb]> SELECT st.name FROM students AS st INNER JOIN scores AS sc ON st.stuid=sc.stuid WHERE sc.courseid=1 OR sc.courseid=2 OR sc.courseid=4 OR sc.courseid=7;
+    MariaDB [hellodb]> SELECT distinct st.stuid,st.name FROM students AS st INNER JOIN scores AS sc ON st.stuid=sc.stuid WHERE sc.courseid=1 OR sc.courseid=2 OR sc.courseid=4 OR sc.courseid=7;
 ```
 18. 显示其成员数最少为3个的班级的同学中年龄大于同班同学平均年龄的同学
 ```
