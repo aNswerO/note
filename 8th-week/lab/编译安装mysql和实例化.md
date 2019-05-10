@@ -6,7 +6,7 @@
 ```
 + 创建用户和数据目录：
 ```shell
-    usadd -r -s /sbin/nologin -d /data/mysql mysql    #创建系统用户mysql，默认shell为nologin，指定家目录为/data/mysql（稍后创建）
+    useradd -r -s /sbin/nologin -d /data/mysql mysql    #创建系统用户mysql，默认shell为nologin，指定家目录为/data/mysql（稍后创建）
 
     mkdir /data/mysql    #创建mysql家目录
 
@@ -58,12 +58,13 @@
 ```  
 ![avagar](https://github.com/aNswerO/note/blob/master/8th-week/pic/tree.png)
 # 生成多实例的数据库文件：
-```
+```shell
     cd /app/mysql
 
     mysql_install_db --datadir=/data/mysql/3306/data/ --user=mysql
     mysql_install_db --datadir=/data/mysql/3307/data/ --user=mysql
     mysql_install_db --datadir=/data/mysql/3308/data/ --user=mysql
+    #若提示找不到命令，使用绝对路径即：/app/mysql/script/mysql_install_db --datadir=/data/mysql/330x/data/ --user=mysql
 ```
 # 创建对应的配置文件：
 ```
