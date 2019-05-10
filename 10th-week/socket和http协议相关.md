@@ -151,7 +151,7 @@
         ```
         #intro
         ```
-    + URL：
+    + 上例中的URL：
         ```
         https://www.baidu.com/index.html
         ```
@@ -171,7 +171,7 @@
             <frag>：片段；一小片或一小部分资源的名字，此组件在客户端使用，用"#"与之前的URL组件分隔
             -->
             ```
-    + URN:
+    + 上例中的URN:
         ```
         www.baidu.com/index.html/#intro
         ```
