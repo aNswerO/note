@@ -4,7 +4,8 @@
 
 2. 检查模块对应的配置文件是否生效，若不生效则将那行的注释取消：  
     ![avagar](https://github.com/aNswerO/note/blob/master/10th-week/pic/%E5%AE%9E%E7%8E%B0%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/%E4%BD%BF%E5%AF%B9%E5%BA%94%E6%96%87%E4%BB%B6%E7%94%9F%E6%95%88.png)  
-3. 修改/app/http24/conf/extra/httpd-info文件的内容如下：  
+3. 修改/app/http24/conf/extra/httpd-info文件的内容如下：
+    >只允许一台主机访问状态页面  
     ![avagar](https://github.com/aNswerO/note/blob/master/10th-week/pic/%E5%AE%9E%E7%8E%B0%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/%E4%BF%AE%E6%94%B9%E5%AF%B9%E5%BA%94%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png)  
 4. 重启服务：
     ```
@@ -12,3 +13,6 @@
     ```
 5. 测试：  
     ![avagar](https://github.com/aNswerO/note/blob/master/10th-week/pic/%E5%AE%9E%E7%8E%B0%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/%E6%B5%8B%E8%AF%95.png)
+6. 测试其他主机是否可以查看状态页面：  
+    ![avagar](https://github.com/aNswerO/note/blob/master/10th-week/pic/%E5%AE%9E%E7%8E%B0%E7%8A%B6%E6%80%81%E9%A1%B5%E9%9D%A2/%E6%B5%8B%E8%AF%95%E5%85%B6%E4%BB%96%E4%B8%BB%E6%9C%BA.png)  
+    >状态码为403，无访问权限
