@@ -7,7 +7,7 @@
     + wordpress：wordpress-5.0.3.tar.gz
     + discuz：Discuz_X3.3_SC_UTF8.zip
 ## 在192.168.1.143上安装httpd-2.4.39：
->见(https://github.com/aNswerO/note/blob/master/10th-week/lab/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85httpd.md)
+>见(https://github.com/aNswerO/note/blob/master/10th-week/lab/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85httpd.md)  
 ## 在192.168.1.128上安装mariadb-5.5.60：
 ``` 
     yum install -y mariadb-server
@@ -27,7 +27,8 @@
         #修改apache默认起始（索引）界面，添加index.php
         ```
     + 修改虚拟主机的配置文件如下图：  
-        ![avagar]()
+        ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/lamp/%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png)  
+        >注意documentroot要设为wordpress和discuz含有.php等文件的目录
 2. 编译安装php-7.3.5：
     1. 安装所需包：
         ```shell
@@ -54,7 +55,7 @@
 
         vim /etc/php.ini
         ```  
-        ![avagar]()
+        ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/lamp/%E4%BF%AE%E6%94%B9%E6%97%B6%E5%8C%BA.png)
     3. 准备php-fpm的服务脚本：
         ```shell
         cp sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
@@ -78,7 +79,7 @@
         ```shell
         vim www.conf
         ```  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/lamp/%E4%BF%AE%E6%94%B9%E6%89%A9%E5%B1%95%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png)  
     7. 启动php-fpm服务：
         ```
         service php-fpm start
@@ -112,15 +113,16 @@
     apachectl restart
     ```
 6. 在windows主机修改C:\Windows\System32\drivers\etc/hosts文件，以实现本地域名解析：  
-    ![avagar]()
+    ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/lamp/%E4%BF%AE%E6%94%B9hosts%E6%96%87%E4%BB%B6.png)
     >要先把文件移动到桌面，进行修改后再移动回原目录
 7. 测试：  
     + 测试WordPress：  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/lamp/%E6%B5%8B%E8%AF%95wordpress.png)  
     + 测试discuz：  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/lamp/%E6%B5%8B%E8%AF%95discuz.png)  
 8. wordpress和discuz连接数据库：
     + wordpress连接数据库：
+        >如果没有在之前给discuz目录设置ACL，会使apache用户无法写入wp-config.php文件，导致报错而无法继续进行；不能将wp-config-sample.php文件改名，此操作也会导致报错且接下来的步骤无法继续进行；最好也不要事先创建wp-config.php文件，除非想要自己将wordpress生成的信息手动导入文件
         1. 在浏览器输入URL：www.wpsite.com
 
         2. 按wordpress提示填入对应信息（忘记截图）：
@@ -133,17 +135,16 @@
             #可以随便填，但是不能不填
             数据库的表前缀：wp_
             ```
-        3. 填入上述信息后等待创建数据库文件和表内容，安装后如图：  
-            ![avagar]()  
-            ![avagar]()  
+        3. 填入上述信息后等待安装数据库，安装后如图：  
+            ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/lamp/wordpress%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93.png)  
+            ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/lamp/wordpress%E7%95%8C%E9%9D%A2.png)  
     + discuz连接数据库：
         1. 在浏览器输入URL：www.discuzsite.com/install（安装时要指定install路径，在安装完成后要删除install目录）：  
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/lamp/%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85discuz.png)  
             >如果没有在之前给discuz目录设置ACL，使apache用户对应权限，目录、文件权限检查的状态会显示红叉，无法继续安装
 
         2. 按提示安装discuz：
-            ![avagar]()  
-            ![avagar]()  
-            ![avagar]()  
-            ![avagar]()  
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/lamp/%E8%AE%BE%E7%BD%AE%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.png)  
+            ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/lamp/%E5%AE%89%E8%A3%85%E6%95%B0%E6%8D%AE%E5%BA%93.png)  
+            ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/lamp/%E5%AE%8C%E6%88%90%E5%AE%89%E8%A3%85.png)  
+            ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/lamp/discuz%E7%95%8C%E9%9D%A2.png)  
