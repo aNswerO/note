@@ -63,3 +63,8 @@
         ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/logrotate/7.png)  
         >这一步默认的数据库和表名称为小写，需要注意大小写  
         ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/logrotate/%E6%B5%8B%E8%AF%95.png)  
+    5. 安装测试完成后进行安全加固：
+        ```
+        cd /var/www/html/loganalyzer
+        chmod 644 config.php
+        ```
