@@ -21,7 +21,7 @@ mariadb版本：5.5.60
 ```
     mysql> GRANT replication slave ON *.* TO repluser@'192.168.113.20' identified BY 'centos';
 ```  
-![avagar](https://github.com/aNswerO/note/blob/master/10th-week/pic/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%AE%9E%E9%AA%8C/%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7.png)
+![avagar](https://github.com/aNswerO/note/blob/master/10th-week/pic/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%AE%9E%E9%AA%8C/%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7.png)  
 5. 配置从节点：
 + 修改配置文件：
 ```
