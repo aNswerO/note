@@ -215,6 +215,7 @@
         mkdir /data
 
         chown -R nfsnobody /data
+        setfacl -Rm u:apache:rwx /data/wordpress
         #如果没有此操作，在安装wordpress时会导致无法内容自动写入wp-config.php文件
         ```
     2. 在NFS服务器上编辑/etc/exports：
