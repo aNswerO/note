@@ -210,11 +210,12 @@
         systemctl enable rsyncd
         ```
 + NFS：
-    1. 在NFS服务器（192.168.1.159）上准备好共享目录/data/：
-        ```
+    1. 在NFS服务器（192.168.1.159）上准备好共享目录/data/（此目录下放有解压完后的wordpress）：
+        ```sh
         mkdir /data
 
-        chown nfsnobody /data
+        chown -R nfsnobody /data
+        #如果没有此操作，在安装wordpress时会导致无法内容自动写入wp-config.php文件
         ```
     2. 在NFS服务器上编辑/etc/exports：
         ```sh
@@ -263,7 +264,7 @@
     ```
 2. 在数据库主服务器（192.168.1.128）上创建wpuser用户并授权：
     ```
-    mysql> grant all on wordpress.* to wpuser@'192.168.1.121' identified by 'centos';
+    mysql> grant all on wordpress.* to wpuser@'192.168.1.129' identified by 'centos';
 
     mysql> flush privileges;
     ```
