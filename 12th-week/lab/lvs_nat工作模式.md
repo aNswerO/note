@@ -13,7 +13,7 @@
 + 一台lvs调度器
 + 两台web服务器
 # 拓扑：  
-![avagar]()  
+![avagar](https://github.com/aNswerO/note/blob/master/12th-week/pic/LVS/nat%E6%A8%A1%E5%BC%8F.png)  
 
 ||SRC_IP|DEST_IP|
 |--|--|--|
@@ -78,8 +78,8 @@
         while true;do curl 172.22.6.200;sleep 1;done
         ```  
         + 直接ping RIP显示主机不可达,但执行上述命令可以访问：  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/12th-week/pic/LVS/%E4%B8%BB%E6%9C%BA%E4%B8%8D%E5%8F%AF%E8%BE%BE.png)  
         + 在两台RS上的日志中可以看到访问记录：  
-        ![avagar]()  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/12th-week/pic/LVS/RS%E6%9C%89%E8%AE%BF%E9%97%AE%E8%AE%B0%E5%BD%95.png)  
+        ![avagar](https://github.com/aNswerO/note/blob/master/12th-week/pic/LVS/RS2%E6%9C%89%E8%AE%BF%E9%97%AE%E8%AE%B0%E5%BD%95.png)  
         >实现了lvs调度
