@@ -32,6 +32,14 @@
 + 两台服务器
 + 拓扑：  
 ![avagar](https://github.com/aNswerO/note/blob/master/12th-week/pic/LVS/DR%E6%A8%A1%E5%BC%8F.png)  
+
+||SOURCR_IP|DEST_IP|SOURCE_MAC|DEST_MAC|
+|--|--|--|--|--|
+|①|CIP|VIP|CIP_MAC|ROUTE_MAC|
+|②|CIP|VIP|ROUTE_MAC|VIP_MAC|
+|③|CIP|VIP|DIP_MAC|RS_MAC|
+|④|VIP|CIP|RS_MAC|ROUTE_MAC|
+|⑤|VIP|CIP|ROUTE_MAC|CIP_MAC|
 # 实验步骤：
 1. 在两台服务器上安装httpd：
     ```
