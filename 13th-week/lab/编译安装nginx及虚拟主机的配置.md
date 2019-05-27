@@ -53,17 +53,17 @@
     include /apps/nginx/conf/servers/*.conf;    #定义包含的子配置文件
     ```
 8. 在子配置文件中定义虚拟主机：  
-    ![avagar]()  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/13th-week/pic/nginx%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA_1.png)  
+    ![avagar](https://github.com/aNswerO/note/blob/master/13th-week/pic/nginx%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA_2.png)  
 9. 创建虚拟主机的目录和主页文件:
     + 结构如下：  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/13th-week/pic/nginx%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png)  
     + 主页内容如下：  
-    ![avagar]()      
+    ![avagar](https://github.com/aNswerO/note/blob/master/13th-week/pic/nginx%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/%E4%B8%BB%E9%A1%B5%E5%86%85%E5%AE%B9.png)      
 10. 在Windows主机的hosts文件中添加解析：  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/13th-week/pic/nginx%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/%E6%9C%AC%E5%9C%B0%E8%A7%A3%E6%9E%90.png)  
 11. 测试：  
-    ![avagar]()  
-    ![avagar]()  
-    ![avagar]()  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/13th-week/pic/nginx%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/wp.png)  
+    ![avagar](https://github.com/aNswerO/note/blob/master/13th-week/pic/nginx%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/wp_sub.png)  
+    ![avagar](https://github.com/aNswerO/note/blob/master/13th-week/pic/nginx%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/diz.png)  
+    ![avagar](https://github.com/aNswerO/note/blob/master/13th-week/pic/nginx%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/diz_sub.png)  
