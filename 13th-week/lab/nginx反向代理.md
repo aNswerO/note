@@ -15,5 +15,8 @@
     >proxy_pass后的http://web:80的最后一个“/”：  
     若存在，等于访问http://web:80/index.html；  
     若不存在，等于访问http://web:80/backup/index.html，必须要后端服务器有backup目录才行
-3. 测试：  
-    ![avagar](https://github.com/aNswerO/note/blob/master/13th-week/pic/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/%E6%B5%8B%E8%AF%95.png)  
+3. 测试：
+    + 效果测试：  
+        ![avagar](https://github.com/aNswerO/note/blob/master/13th-week/pic/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/%E6%B5%8B%E8%AF%95.png)  
+    +  可用性测试：  
+        ![avagar](https://github.com/aNswerO/note/blob/master/13th-week/pic/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/%E5%8F%AF%E7%94%A8%E6%80%A7%E6%B5%8B%E8%AF%95.png)
