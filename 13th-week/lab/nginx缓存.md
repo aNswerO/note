@@ -29,6 +29,7 @@
 3. 使用ab命令测试：
     + 未启用缓存的测试结果：  
         ![avagar](https://github.com/aNswerO/note/blob/master/13th-week/pic/%E7%BC%93%E5%AD%98/%E6%9C%AA%E5%90%AF%E7%94%A8%E7%BC%93%E5%AD%98%E6%B5%8B%E8%AF%95.png)  
-    + 重载nginx配置文件，启用缓存后的测试结果：  
+    + 重载nginx配置文件，启用缓存后的nginx反向代理服务器的缓存文件生成结果和访问测试结果：  
+        ![avagar](https://github.com/aNswerO/note/blob/master/13th-week/pic/%E7%BC%93%E5%AD%98/%E6%9F%A5%E7%9C%8B%E7%BC%93%E5%AD%98%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E7%94%9F%E6%88%90.png)  
         ![avagar](https://github.com/aNswerO/note/blob/master/13th-week/pic/%E7%BC%93%E5%AD%98/%E5%90%AF%E7%94%A8%E7%BC%93%E5%AD%98%E6%B5%8B%E8%AF%95.png)  
         >从测试结果看来，缓存确实起到了效果，但不够真实，在应用时未必会有这么大的响应速度的提升
