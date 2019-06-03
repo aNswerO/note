@@ -122,7 +122,7 @@
         ![avagar](https://github.com/aNswerO/note/blob/master/11th-week/pic/lamp/%E6%B5%8B%E8%AF%95discuz.png)  
 8. wordpress和discuz连接数据库：
     + wordpress连接数据库：
-        >如果没有在之前给discuz目录设置ACL，会使apache用户无法写入wp-config.php文件，导致报错而无法继续进行；不能将wp-config-sample.php文件改名，此操作也会导致报错且接下来的步骤无法继续进行；最好也不要事先创建wp-config.php文件，除非想要自己将wordpress生成的信息手动导入文件
+        >如果没有在之前给wordpress目录设置ACL，会使apache用户无法写入wp-config.php文件，导致报错而无法继续进行；不能将wp-config-sample.php文件改名，此操作也会导致报错且接下来的步骤无法继续进行；最好也不要事先创建wp-config.php文件，除非想要自己将wordpress生成的信息手动导入文件
         1. 在浏览器输入URL：www.wpsite.com
 
         2. 按wordpress提示填入对应信息（忘记截图）：
