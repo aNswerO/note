@@ -136,10 +136,7 @@
             ```
         2. 下载所需工具：
             ```
-            yum install -y vim lrzsz tree screen psmisc lsof tcpdump wget ntpdate
-            gcc gcc-c++ glibc glibc-devel pcre pcre-devel openssl openssl-devel systemd-devel
-            net-tools iotop bc zip unzip zlib-devel bash-completion nfs-utils automake libxml2
-            libxml2-devel libxslt libxslt-devel perl perl-ExtUtils-Embed
+            yum install -y vim lrzsz tree screen psmisc lsof tcpdump wget ntpdate gcc gcc-c++ glibc glibc-devel pcre pcre-devel openssl openssl-devel systemd-devel net-tools iotop bc zip unzip zlib-devel bash-completion nfs-utils automake libxml2 libxml2-devel libxslt libxslt-devel perl perl-ExtUtils-Embed
             ```
         3. 下载源码包：
             ```
