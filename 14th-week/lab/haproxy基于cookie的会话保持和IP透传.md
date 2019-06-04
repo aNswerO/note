@@ -19,10 +19,10 @@ cookie <name> [ rewrite | insert | prefix ] [ indirect ] [ nocache ]
     ```
     vim /etc/haproxy/haproxy.cnf
     ```  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/14th-week/pic/cookie%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81%E5%92%8CIP%E9%80%8F%E4%BC%A0/cookie%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png)  
 
 + 测试：  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/14th-week/pic/cookie%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81%E5%92%8CIP%E9%80%8F%E4%BC%A0/cookie%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81.png)  
 
 # IP透传：
 >使后端服务器获取到用户的IP地址
@@ -36,7 +36,7 @@ cookie <name> [ rewrite | insert | prefix ] [ indirect ] [ nocache ]
     ```
     vim /etc/haproxy/haproxy.cnf
     ```  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/14th-week/pic/cookie%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81%E5%92%8CIP%E9%80%8F%E4%BC%A0/%E5%9B%9B%E5%B1%82%E9%80%8F%E4%BC%A0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png)  
 + 修改后端nginx服务器的配置文件：
     ```sh
     vim /apps/nginx/conf/nginx.conf
@@ -67,14 +67,14 @@ cookie <name> [ rewrite | insert | prefix ] [ indirect ] [ nocache ]
     systemctl restart haproxy
     nginx -s reload
     ```  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/14th-week/pic/cookie%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81%E5%92%8CIP%E9%80%8F%E4%BC%A0/%E5%9B%9B%E5%B1%82IP%E9%80%8F%E4%BC%A0.png)  
 ## 七层负载均衡的IP透传：
 ### 实验步骤：
 + 在HAProxy负载均衡器上做如下配置：
     ```
     vim /etc/haproxy/haproxy.cnf
     ```  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/14th-week/pic/cookie%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81%E5%92%8CIP%E9%80%8F%E4%BC%A0/%E4%B8%83%E5%B1%82%E9%80%8F%E4%BC%A0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png)  
 
 + 修改日志格式同上
 + 重启haproxy和nginx并测试：
@@ -82,4 +82,4 @@ cookie <name> [ rewrite | insert | prefix ] [ indirect ] [ nocache ]
     systemctl restart haproxy
     nginx -s reload
     ```  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/14th-week/pic/cookie%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81%E5%92%8CIP%E9%80%8F%E4%BC%A0/IP%E9%80%8F%E4%BC%A0.png)  
