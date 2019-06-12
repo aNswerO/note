@@ -84,7 +84,7 @@
         ```
         redis-server /usr/local/redis/etc/redis.conf
         ```  
-        ![avagar]()
+        ![avagar](https://github.com/aNswerO/note/blob/master/15th-week/pic/redis%E5%9F%BA%E7%A1%80/%E8%A7%A3%E5%86%B3warning.png)
         + 第一个warning：
             ```
                 backlog参数控制的是三次握手的时候server端收到client ack确认号之后的队列值；修改内核参数net.core.somaxconn=512可以消除此warning  
@@ -101,7 +101,7 @@
             ```
         >在/etc/sysctl.conf加入“vm.overcommit_memory=1”和“net.core.somaxconn=512”来对这两个内核参数进行修改，使用“sysctl -p”命令使修改生效
         + 再次启动redis，查看warning是否消失：  
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/15th-week/pic/redis%E5%9F%BA%E7%A1%80/%E8%A7%A3%E5%86%B3warning%E5%90%8E.png)  
     + 创建一个redis服务启动脚本/usr/lib/systemd/system/redis.service，使之能通过systemd启动、重载、重启和关闭，内容如下：
         ```
         [Unit]
@@ -126,7 +126,7 @@
     ```
     systemctl start redis
     ```  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/15th-week/pic/redis%E5%9F%BA%E7%A1%80/systemd%E5%90%AF%E5%8A%A8redis.png)  
 2. 连接redis：
     + 本机非密码连接：
         ```
