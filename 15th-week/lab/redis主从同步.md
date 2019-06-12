@@ -10,7 +10,8 @@
 7. 以上为**全量同步**，即第一次同步时从服务器会同步全部来自主服务器的数据
 8. 以后的同步（**增量同步**）从服务器会向主服务器发送自己的slave_repl_offset位置请求同步
 9. 主服务器收到从服务器发来的slave_repl_offest后，查看自己的master_repl_offset位置，若通过此位置发现有新的名令执行（master_repl_offset与slave_repl_offest不一致），则执行**BGSAVE**命令，将缓冲区中的此位置后的**写命令**发送给从服务器
-10. 从服务器收到新的**写命令**，执行这些命令，完成此次**增量同步**，并等待下一次**增量同步**
+10. 从服务器收到新的**写命令**，执行这些命令，完成此次**增量同步**，并等待下一次**增量同步**  
+![avagar](https://github.com/aNswerO/note/blob/master/15th-week/pic/redis%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E8%BF%87%E7%A8%8B.png)  
 ## redis主从配置：
 + 主从服务器的ip地址：
     + redis_master：10.1.0.1
@@ -56,21 +57,21 @@
 
         10.1.0.1:6379> auth centos
         ```  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/15th-week/pic/redis%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/%E4%BB%8E%E8%8A%82%E7%82%B9slave%E7%8A%B6%E6%80%81.png)  
     5. 查看slave数据库中的内容是否与master同步：  
-        ![avagar]()  
-        ![avagar]()    
+        ![avagar](https://github.com/aNswerO/note/blob/master/15th-week/pic/redis%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/%E4%B8%BB%E6%95%B0%E6%8D%AE.png)  
+        ![avagar](https://github.com/aNswerO/note/blob/master/15th-week/pic/redis%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/%E4%BB%8E%E6%95%B0%E6%8D%AE.png)    
     6. 查看slave的日志：
         ```
         tail -10 /usr/local/redis/log/redis.log 
         ```  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/15th-week/pic/redis%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/slave%E6%97%A5%E5%BF%97.png)  
     7. 重启redis，再次查看slave的状态：
         ```
         kill -9 $(cat /var/run/redis_6379.pid)
 
         redis-server
         ```  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/15th-week/pic/redis%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/%E9%87%8D%E5%90%AF.png)  
     8. 在master上新增key，查看slave是否同步：  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/15th-week/pic/redis%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/%E6%96%B0%E5%A2%9E.png)  
