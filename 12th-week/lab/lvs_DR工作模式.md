@@ -1,6 +1,6 @@
 # lvs_DR工作模式：
 >DR（Driect Routing）：直接路由，是LVS默认模式，应用最广泛；  
-此模式通过为请求报文重新封装一个MAC首部进行转发。源MAC地址为DIP所在端口的MAC地址，目标MAC地址为某被调度的RS的RIP所在端口的MAC地址；  
+此模式通过为请求报文重新封装一个MAC首部（prerouting链）进行转发。源MAC地址为DIP所在端口的MAC地址，目标MAC地址为某被调度的RS的RIP所在端口的MAC地址；  
 在此过程中，源IP/PORT以及目标IP/PORT均保持不变
 
 + 注意：
