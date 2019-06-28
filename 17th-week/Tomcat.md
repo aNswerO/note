@@ -18,9 +18,10 @@
 |webapps|应用部署目录|
 |work|jsp编译后的结果文件|
 ### Tomcat配置文件：
+
 |配置文件|说明|
-|server.xml|主配置文件|
 |--|--|
+|server.xml|主配置文件|
 |web.xml|每个webapp只有经**部署**后才能被访问，它的**部署方式**通常由**web.xml**进行定义，其存放位置为WEB-INF/目录；此配置文件为所有的webapps提供默认部署相关的配置|
 |context.xml|每个webapp都可以专用的配置文件|context.xml，其存放位置为WEB-INF/目录；此文件为所有的webapp提供默认配置|
 |tomcat-users.xml|用户认证的账号和密码文件|
