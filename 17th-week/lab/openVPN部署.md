@@ -273,8 +273,9 @@
         2. 测试连接：
             >要将服务端/etc/openvpn/client/qyh目录下的全部文件打包发送给客户端，由客户端解压到指定目录  
 
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/17th-week/pic/openVPN/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%96%87%E4%BB%B6%E5%AD%98%E6%94%BE%E8%B7%AF%E5%BE%84.png)  
         3. 查看路由表：  
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/17th-week/pic/openVPN/%E6%9F%A5%E7%9C%8B%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%B7%AF%E7%94%B1%E8%A1%A8.png)  
         4. 测试连接：  
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/17th-week/pic/openVPN/%E8%BF%9E%E6%8E%A5.png)  
+            ![avagar](https://github.com/aNswerO/note/blob/master/17th-week/pic/openVPN/%E6%B5%8B%E8%AF%95%E8%BF%9E%E6%8E%A5.png)  
