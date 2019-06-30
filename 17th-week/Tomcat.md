@@ -55,7 +55,7 @@
         listener、cluster
     ```
 ## Tomcat的内部组成：  
-![avagar]()  
+![avagar](https://github.com/aNswerO/note/blob/master/17th-week/pic/Tomcat/Tomcat%E5%86%85%E9%83%A8%E7%BB%84%E6%88%90.png)  
 |名称|说明|
 |--|--|
 |Server|Tomcat运行的实例进程|
