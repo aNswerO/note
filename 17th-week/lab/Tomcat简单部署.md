@@ -78,7 +78,8 @@
 ```
     .jsp --> Tomcat转义 --> .java --> Tomcat调用JDK编译 --> .class --> 调用JDK运行
 ```
->转换后的文件存放在/usr/local/tomcat/work/Catalina/localhost/ROOT/org/apache/jsp/目录下，因为有这样的转换过程，所以第一次加载jsp页面会比较慢
+>转换后的文件存放在/usr/local/tomcat/work/Catalina/localhost/ROOT/org/apache/jsp/目录下，因为有这样的转换过程，所以第一次加载jsp页面会比较慢  
+![avagar](https://github.com/aNswerO/note/blob/master/17th-week/pic/Tomcat/%E8%BD%AC%E6%8D%A2%E5%90%8E%E7%9A%84%E6%96%87%E4%BB%B6.png)  
 ## 配置文件/usr/local/tomcat/conf/server.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
