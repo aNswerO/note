@@ -22,7 +22,7 @@
     ```
 3. 安装Tomcat（下载地址：https://tomcat.apache.org/download-80.cgi）：
     ```
-        tar xvf apache-tomcat-8.5.42.tar.gz -c /usr/local/
+        tar -xvf apache-tomcat-8.5.42.tar.gz -c /usr/local/
     ```
     ```
         ln -sv /usr/local/apache-tomcat-8.5.42/ /usr/local/tomcat
