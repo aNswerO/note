@@ -10,7 +10,7 @@
 1. 安装Tomcat前需要安装JDK，下载地址：https://www.oracle.com/technetwork/java/javase/downloads/index.html
 >下载rpm包，使用如下命令安装：
 ```
-    rpm -ivh jdk-8u191-linux-x64.rpm
+    yum install -y jdk-8u191-linux-x64.rpm
 ```
 
 2. 添加环境变量：
