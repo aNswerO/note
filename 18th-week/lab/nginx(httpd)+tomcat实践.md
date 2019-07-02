@@ -85,9 +85,9 @@
         ```
             [root@backend_1 ROOT]#catalina.sh start
         ```
-+ 测试读写分离：  
-    ![avagar]()  
-    ![avagar]()  
++ 测试动静分离：  
+    ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/tomcat%E5%AE%9E%E8%B7%B5/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB.%E6%B5%8B%E8%AF%95_1.png)  
+    ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/tomcat%E5%AE%9E%E8%B7%B5/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB%E6%B5%8B%E8%AF%95_2.png)  
     >由于为了测试方便，只添加了请求资源为jsp文件的转发，还有文件访问不到，所以不能正确渲染
 
 ## HostManager虚拟主机管理：
@@ -105,7 +105,7 @@
 
     allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1|192\.168\.6\.\d+" />
     ```  
-![avagar]()  
+![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/tomcat%E5%AE%9E%E8%B7%B5/%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BAweb%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2.png)  
 # httpd + tomcat实践：
 ## proxy_httpd_module模块代理：
 >httpd与tomcat部署在同一台主机
@@ -136,7 +136,7 @@
         [root@backend_1 tomcat]#systemctl restart httpd
     ```
 + 测试：  
-![avagar]()  
+![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/tomcat%E5%AE%9E%E8%B7%B5/%E6%B5%8B%E8%AF%95httpd.png)  
 ## proxy_ajp_module模块代理：
 >httpd和tomcat部署在同一主机
 + proxy_ajp_module模块代理配置：
@@ -159,4 +159,4 @@
         [root@backend_1 httpd]#systemctl restart httpd
     ```
 + 测试：  
-![avagar]()  
+![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/tomcat%E5%AE%9E%E8%B7%B5/ajp.png)  
