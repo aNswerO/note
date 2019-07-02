@@ -39,8 +39,8 @@
     ```
 + 测试：
     + 后端服务器无故障：  
-        ![avagar]()  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/msm%E6%B5%8B%E8%AF%95_1.png)  
+        ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/msm%E6%B5%8B%E8%AF%95_2.png)  
     + 运行py脚本查看memcached中session信息：
         + py脚本：
             ```py
@@ -55,10 +55,11 @@
             print('-' * 30)
             print(mc.get_stats('cachedump 5 0'))
             ```  
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/py%E8%84%9A%E6%9C%AC%E6%9F%A5%E7%9C%8Bmemcached.png)  
     + backend2故障：  
-        ![avagar]()  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/msm%E6%A8%A1%E6%8B%9F%E6%95%85%E9%9A%9C%E6%B5%8B%E8%AF%95_1.png)  
+        ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/msm%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D%E6%B5%8B%E8%AF%95_1.png)  
+        ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/msm%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D%E6%B5%8B%E8%AF%95_2.png)  
         >可以看到故障恢复后，故障节点重新恢复为主存储节点
 ## non-sticky模式：
 >msm 1.4.0之后开始支持non-sticky模式
@@ -85,10 +86,10 @@
     ```
 + 测试：  
     + 后端服务器无故障：  
-        ![avagar]()  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/msm_non-sticky%E6%B5%8B%E8%AF%95_1.png)  
+        ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/msm_non-sticky%E6%B5%8B%E8%AF%95_2.png)  
     + backend2故障下线：  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/msm_non-sticky%E6%95%85%E9%9A%9C%E6%B5%8B%E8%AF%95_1.png)  
     + backend2恢复上线：  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/msm_non-sticky%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D%E6%B5%8B%E8%AF%95.png)  
     >可以看到无故障时，从n2读取的sessionID；故障发生后，转而从n1读取sessionID；即使从故障恢复上线后，仍然从n1读取sessionID
