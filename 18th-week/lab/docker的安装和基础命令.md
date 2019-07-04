@@ -103,7 +103,7 @@
     3. 若是start或是exec容器，containerd拉起一个containerd-shim，并进行响应操作
     4. containerd-shim被拉起后，start/exec/create拉起一个runc进程，并通过exit、control文件和containerd通信，通过父子进程关系和SIGCHLD监控容器中进程状态
     5. 在整个容器的生命周期中，containerd通过epoll监控容器文件和容器事件  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/docker/%E8%BF%9B%E7%A8%8B%E6%A0%91.png)  
 # docker镜像管理：
 ## docker镜像：
 >docker镜像含有启动容器所需要的文件系统及所需要的内容，因此镜像主要用于创建并启动docker容器
@@ -262,12 +262,12 @@ docker run -p 81:80/tcp -p 443:443/tcp -p 53:53/udp --name test5 nginx
     [root@docker opt]#docker run -p 80:80 --name test_port nginx
     ```
     + 浏览器测试：  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/docker/%E6%B5%8B%E8%AF%95%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84_2.png)  
     + 查看日志：
     ```
     [root@docker ~]#docker logs test_port
     ```
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/docker/%E6%B5%8B%E8%AF%95%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84_1.png)  
     + 查看容器已经映射的端口：
     ```
     [root@docker ~]#docker port test_port 
@@ -282,24 +282,24 @@ docker run -p 81:80/tcp -p 443:443/tcp -p 53:53/udp --name test5 nginx
 ```
 [root@docker opt]#docker stop nginx_test
 ```  
-![avagar]()  
+![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/docker/%E5%AE%B9%E5%99%A8%E5%90%AF%E5%81%9C.png)  
 + 批量关闭正在运行的容器：
 >docker ps  -aq命令可以列出当前正在运行的容器的ID
 ```
 [root@docker ~]#docker stop $(docker ps -aq)
 ```  
-![avagar]()  
+![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/docker/%E6%89%B9%E9%87%8F%E5%85%B3%E9%97%AD%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%E7%9A%84%E5%AE%B9%E5%99%A8.png)  
 + 批量强行关闭正在运行的容器：
 ```
 [root@docker ~]#docker kill $(docker ps -aq)
 ```  
-![avagar]()  
+![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/docker/%E6%89%B9%E9%87%8F%E5%BC%BA%E5%88%B6%E5%85%B3%E9%97%AD%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%E7%9A%84%E5%AE%B9%E5%99%A8.png)  
 + 批量删除以退出的容器：
 >docker ps -aq -f status=exited
 ```
 [root@docker ~]#docker rm -f `docker ps -aq -f status=exited`
 ```  
-![avagar]()  
+![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/docker/%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E4%BB%A5%E9%80%80%E5%87%BA%E5%AE%B9%E5%99%A8.png)  
 ## 进入正在运行的容器：
 + attach命令：
 >类似于VNC，操作会在各个容器界面显示，所有使用此方式进入容器的操作都是同步显示的，且使用exit退出后容器会被关闭，不推荐使用
@@ -330,7 +330,7 @@ docker run -p 81:80/tcp -p 443:443/tcp -p 53:53/udp --name test5 nginx
     ```
     [root@docker opt]#nsenter -t 22216 -m -u -i -n -p
     ```  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/docker/%E4%BD%BF%E7%94%A8nsenter%E5%91%BD%E4%BB%A4%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8.png)  
     + 将nsenter命令写入脚本，使用脚本进人容器：
     >脚本内容
     ```sh
@@ -338,18 +338,19 @@ docker run -p 81:80/tcp -p 443:443/tcp -p 53:53/udp --name test5 nginx
     read -p "Enter the container's name/ID:" CONTAINER
     PID=$(docker inspect -f "{{.State.Pid}}" $CONTAINER)
     nsenter -t $PID -m -u -i -n -p
-    ```
+    ```  
+    ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/docker/nsenter%E8%84%9A%E6%9C%AC%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8.png)  
     + 进入容器后查看hosts文件：  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/docker/%E5%AE%B9%E5%99%A8%E7%9A%84hosts%E6%96%87%E4%BB%B6.png)  
     >默认会将容器的ID作为主机名，添加到自己的hosts文件中作一条本地解析，在容器内能ping通
     + 容器内安装ping命令：
         ```
         root@1aae455ec8c2:/# apt install iputils-ping
         ```  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/docker/%E5%AE%B9%E5%99%A8%E5%86%85ping.png)  
 ## 容器的DNS：
 >容器的DNS默认是与宿主机相同的，但可以自己定义  
-![avagar]()  
+![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/docker/%E5%AE%B9%E5%99%A8%E7%9A%84hosts%E6%96%87%E4%BB%B6.png)  
 + 修改容器DNS的两种方式：
     + 修改宿主机的DNS
 
@@ -357,4 +358,4 @@ docker run -p 81:80/tcp -p 443:443/tcp -p 53:53/udp --name test5 nginx
         ```
         [root@docker ~]#docker run -it --name centos_test --dns 172.20.0.1 centos
         ```  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/docker/%E6%8C%87%E5%AE%9Adns.png)  
