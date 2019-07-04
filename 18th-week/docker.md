@@ -7,7 +7,7 @@
 + docker image（镜像）：创建容器时使用的模板
 + docker registry（仓库）：保存镜像的仓库
 + docker container（容器）：从镜像生产对外提供服务的一个或一组服务  
-![avagar]()  
+![avagar](https://github.com/aNswerO/note/blob/master/18th-week/pic/docker/docker%E7%BB%84%E6%88%90.png)  
 ## docker的优势：
 + 快速部署：短时间内部署大量应用，快速交付上线
 
