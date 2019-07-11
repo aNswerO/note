@@ -73,11 +73,17 @@
         ```
     + 导入镜像：
         ```
-        docker load < 
+        docker load < registry.cn-hangzhou.aliyuncs.com/google_containers/kube-apiserver:v1.14.1
+        docker load < registry.cn-hangzhou.aliyuncs.com/google_containers/kube-controller-manager:v1.14.1
+        docker load < registry.cn-hangzhou.aliyuncs.com/google_containers/kube-scheduler:v1.14.1
+        docker load < registry.cn-hangzhou.aliyuncs.com/google _containers/kube-proxy:v1.14.1
+        docker load < registry.cn-hangzhou.aliyuncs.com/google_containers/pause:3.1
+        docker load < registry.cn-hangzhou.aliyuncs.com/google_containers/etcd:3.3.10
+        docker load < registry.cn-hangzhou.aliyuncs.com/google_containers/coredns:1.3.1
         ```
 6. 关闭swap：
     >将/etc/fstab文件中swap的那一行注释，重启机器  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E5%85%B3%E9%97%ADswap.png)  
 7. 初始化master：
     + 初始化：
         ```
@@ -92,7 +98,7 @@
         + --service-dns-domain：为API service使用备选域名
         + --image-repository：自定义镜像地址，解决默认k8s仓库被墙的问题  
     + 初始化成功：  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E5%88%9D%E5%A7%8B%E5%8C%96%E6%88%90%E5%8A%9F.png)  
         >之后要使用下面红框内的信息来加入node
 8. master配置kube证书：
     >证书中包含kube-apiserver的地址和相关认证信息
@@ -114,7 +120,7 @@
     ```
     [root@master ~]#kubectl get cs
     ```  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E9%AA%8C%E8%AF%81k8s%E7%8A%B6%E6%80%81.png)  
 10. 部署flannel：
     >flannel实质上是一种“覆盖网络”（overlay network），将TCP数据包装在另一种网络包里进行路由转发和通信，让二层网络在三层网络中传递，既解决了二层的缺点，有解决了三层的不灵活
     + 使用kubectl apply命令创建对象：
@@ -125,7 +131,7 @@
         ```
         [root@master ~]#kubectl get pod --all-namespaces
         ```  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89pod.png)  
 ### node节点：
 >在两个node节点上都执行上面master执行的 1 ~ 4 步
 1. 添加两个node节点：
@@ -142,10 +148,10 @@
         ```
         [root@master ~]#kubectl get nodes
         ```  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E6%9F%A5%E7%9C%8B%E8%8A%82%E7%82%B9%E4%BF%A1%E6%81%AF.png)  
         >此时node节点的状态是NotReady，这是因为节点的docker正在拉取镜像并启动flannel，所以需要等待一会儿
     + 稍等，再次查看节点信息：  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E4%B8%A4%E8%8A%82%E7%82%B9ready.png)  
         >此时节点以加入集群
 2. master节点上创建容器并测试：
     + 创建容器：
@@ -156,13 +162,13 @@
         ```
         [root@master ~]#kubectl get pod -o wide
         ```  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E6%9F%A5%E7%9C%8B%E8%8A%82%E7%82%B9%E7%8A%B6%E6%80%81%EF%BC%88%E9%94%99%E8%AF%AF%EF%BC%89.png)  
         >由于创建容器时指定了--replicas=2，所以创建了两个前缀相同的pod
     + 查看指定pod的更多信息：
         ```
         [root@master ~]#kubectl describe pod net-test1-5857c68695-hd24f
         ```  
-        ![avagar]()   
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/pod%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF.png)   
         >这里看到pod并没有READY，且状态为ImagePullBackOff，这里是由于打错了镜像名称，导致k8s未能拉取到镜像...
     + 删除pod：
         ```
@@ -170,18 +176,18 @@
 
         [root@master ~]#kubectl delete pod net-test1-5857c68695-qtwtl
         ```  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E5%88%A0%E9%99%A4%E5%90%8E%E8%87%AA%E5%8A%A8%E5%88%9B%E5%BB%BA.png)  
         >可以看到删除pod后，又有新的前缀名和被删除pod相同的pod被自动创建
         + 检查是否创建了deployments任务：
             ```
-            [root@master ~]#kubectl get 
+            [root@master ~]#kubectl get deployment
             ```  
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E6%9F%A5%E7%9C%8B%E8%87%AA%E5%8A%A8%E5%88%9B%E5%BB%BA%E4%BB%BB%E5%8A%A1.png)  
         + 删除这个deployment任务：
             ```
             [root@master ~]#kubectl delete deployment net-test1
             ```  
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E5%88%A0%E9%99%A4%E4%BB%BB%E5%8A%A1%E5%90%8Epod%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4.png)  
             >删除了这个deployment任务后，pod被自动删除了
     + 重新创建容器：
         ```
@@ -191,7 +197,7 @@
         ```
         [root@master ~]#kubectl get pods
         ```  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E6%9F%A5%E7%9C%8B%E8%8A%82%E7%82%B9%E7%8A%B6%E6%80%81%EF%BC%88%E6%AD%A3%E7%A1%AE%EF%BC%89.png)  
     + master节点创建容器，并测试网络连接：
         >由于安装docker-ce之后，它自动给iptables的FORWARD链添加了默认为DROP的规则，所以要想通信，需要把FORWARD链的默认规则改为ACCEPT
         + node节点上修改iptables规则：
@@ -204,50 +210,43 @@
             ```
             [root@master ~]#kubectl exec -it net-test1-68898c85b7-6jdqf sh
             ```  
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E6%B5%8B%E8%AF%95%E9%80%9A%E4%BF%A1.PNG)  
 ## k8s集群升级：
 >要升级k8s集群必须先升级kubeadm到目标版本
 1. 查看当前kubeadm版本：
     ```
     [root@master ~]#kubeadm version
     ```  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E7%89%88%E6%9C%AC.png)  
 2. 安装指定版本的kubeadm：
-    + 查看k8s版本列表：
+    + 查看kubeadm版本列表：
         ```
         [root@master ~]#apt-cache madison kubeadm
-        ```
-        ![avagar]()  
+        ```  
     + 安装指定版本：
         ```
         [root@master ~]#apt-get install kubeadm=1.14.3-00
         ```
-    + 验证版本：
-        ```
-        [root@master ~]#apt-cache madison kubeadm
-        ```  
-        ![avagar]()  
 3. 查看升级计划：
     ```
     [root@master ~]#kubeadm upgrade plan
     ```  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E6%9F%A5%E7%9C%8B%E5%8D%87%E7%BA%A7%E8%AE%A1%E5%88%92.png)  
 4. 升级：
     ```
     [root@master ~]#kubeadm upgrade apply v1.14.3
     ```  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E5%8D%87%E7%BA%A7%E6%88%90%E5%8A%9F.png)  
 5. 验证当前版本信息：  
-    ![avagar]()  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E9%AA%8C%E8%AF%81%E5%BD%93%E5%89%8D%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF.png)  
 6. 升级个node节点的配置文件：
     ```
     kubeadm upgrade node config -kubelet-version 1.14.3
     ```  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E5%8D%87%E7%BA%A7node%E8%8A%82%E7%82%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png)  
 7. 各节点升级kubelet二进制包：
     ```
     apt install kubelet=1.14.3-00
     ```  
 8. 验证版本：  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/kubeadm%E9%83%A8%E7%BD%B2%E9%9B%86%E7%BE%A4/%E6%9C%80%E7%BB%88%E9%AA%8C%E8%AF%81%E7%89%88%E6%9C%AC.png)  
