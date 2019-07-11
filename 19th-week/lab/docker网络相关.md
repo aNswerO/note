@@ -31,19 +31,28 @@
     c0d791d52ed9b11c8c95583d9ea834950710eb8ef6223e55bff5111e8466e503
     ```
 2. 查看第一个容器的hosts文件内容：  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%AE%B9%E5%99%A8hosts.png)  
 3. 创建第二个容器：
     ```
     [root@masterdocker run -d --name nginx2 --link nginx1 -p 8002:80 nginx
     b2d91aed87442e227668d11b5
     ```
 4. 查看第二个容器的hosts文件内容：  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/%E7%AC%AC%E4%BA%8C%E4%B8%AA%E5%AE%B9%E5%99%A8hosts.png)  
 5. 检测通信：  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/2ping1.png)  
     >第一个容器的ID和名称只会被添加到link到第一个容器的容器中，而不会将自己的ID和名称添加到第一个容器中
 ## 通过自定义容器别名互联：
 >使用自定义容器别名，那么容器的名称就可以随意更换了，只要自定义的容器别名不变，就不会因容器名称变化而影响访问
+1. 创建第三个容器：
+    ```
+    [root@master ~]#docker run -d --name nginx3 --link nginx1:nginx-1 -p 8010:80 nginx
+    6de8f4aa609c638c060ee05d699ddc72b93788dca347efbd9b5b1436c65eb29e
+    ```
+2. 查看第三个容器的hosts内容：  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/%E7%AC%AC%E4%BA%8C%E4%B8%AA%E5%AE%B9%E5%99%A8hosts.png)  
+3. 检测通信：  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/3ping1%E5%88%AB%E5%90%8D.png)  
 # 跨主机容器间互联：
 >要想让位于两个宿主机上的容器间进行通信，首先要保证两宿主机间是可以通信的，通过添加静态路由实现宿主机A与宿主机B间的通信  
 
@@ -63,42 +72,42 @@
         [root@node1 ~]#systemctl restart docker
         ```
         >ubuntu修改这个文件，CentOS修改/usr/lib/systemd/system/docker.service，为service配置段中的ExecStart加上如图所示的参数  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/%E4%BF%AE%E6%94%B9A%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%BD%91%E6%AE%B5.png)  
         + 验证网卡：  
-            ![avagar]()              
-    + 修改宿主机A的docker的网段：  
-        ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/A%E7%BD%91%E5%8D%A1.png)              
+    + 修改宿主机B的docker的网段：  
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/%E4%BF%AE%E6%94%B9B%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%BD%91%E6%AE%B5.png)  
         + 验证网卡:  
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/B%E7%BD%91%E5%8D%A1.png)  
 2. 启动两宿主机上的容器，查看网络信息：
-    + 宿主机A：  
-        ![avagar]()  
+    + 宿主机A中容器：  
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/A%E4%B8%AD%E5%AE%B9%E5%99%A8IP.png)  
 
-    + 宿主机B：
-        ![avagar]()  
+    + 宿主机B中容器：
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/B%E4%B8%AD%E5%AE%B9%E5%99%A8IP.png)  
 3. 为宿主机添加静态路由，网关指向对方宿主机的IP：
     + 宿主机A：
         ```
         [root@master ~]#route add -net 172.16.20.0/24 gw 192.168.6.101
         ```
         + 查看路由表：  
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/A%E8%B7%AF%E7%94%B1%E8%A1%A8.png)  
     + 宿主机B：
         ```
         [root@node1 ~]#route add -net 172.16.10.0/24 gw 192.168.6.100
         ```
         + 查看路由表：  
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/B%E8%B7%AF%E7%94%B1%E8%A1%A8.png)  
 4. 如果iptables中FORWARD链的默认策略为DROP，还要在两宿主机上添加一条iptables规则：
     ```
     [root@master ~]#iptables -A FORWARD -s 192.168.6.100/24 -j ACCEPT
     ```
 5. 测试互联：
     + 宿主机A ping 宿主机B：  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/ApingB.png)  
     + 宿主机B中的容器 ping 宿主机A中的容器：  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/A%E4%B8%AD%E5%AE%B9%E5%99%A8pingB%E4%B8%AD%E5%AE%B9%E5%99%A8.png)  
     + 宿主机B ping 宿主机A：  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/BpingA.png)  
     + 宿主机B中的容器 ping 宿主机A中的容器：  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E7%BD%91%E7%BB%9C/B%E4%B8%AD%E5%AE%B9%E5%99%A8pingA%E5%AE%B9%E5%99%A8.png)  
