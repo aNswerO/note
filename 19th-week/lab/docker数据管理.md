@@ -8,7 +8,7 @@
     ```
     [root@master ~]#docker inspect f68d6e55e065
     ```  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/%E5%AE%B9%E5%99%A8%E7%9A%84%E7%9B%AE%E5%BD%95.png)  
     + LowerDir：只读层目录
 
     + UpperDir：可读写层目录；任何对容器的改变都写在这个目录中
@@ -60,18 +60,18 @@
             ```
             [root@master testapp]#docker run -d -v /root/testapp/test1/:/usr/share/nginx/html -p 8008:80 nginx
             ```
-            + 测试是否可读写：  
-            ![avagar]()  
             + 浏览器访问测试：  
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/%E9%AA%8C%E8%AF%81%E6%B5%8B%E8%AF%95%E9%A1%B5.png)  
+            + 测试是否可读写：  
+            ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/%E5%8F%AF%E8%AF%BB%E5%86%99.png)  
         + 创建容器使用-v参数和“ro”使其只读挂载一个数据卷：
             ```
             [root@master testapp]#docker run -d -v /root/testapp/test2/:/usr/share/nginx/html:ro -p 8009:80 nginx
             ```
             + 测试是否可读写：  
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/%E5%8F%AA%E8%AF%BB.png)  
             + 浏览器访问测试：  
-            ![avagar]()  
+            ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/%E6%B5%8B%E8%AF%95%E5%8F%AA%E8%AF%BB%E6%8C%82%E8%BD%BD%E6%B5%8B%E8%AF%95%E9%A1%B5.png)  
             >删除容器后数据卷不会收到影响
 ## 数据卷容器实验：
 1. 创建数据卷容器server：
@@ -83,13 +83,13 @@
     [root@master ~]#docker run -d -p 8010:80 --volumes-from 6f7776392646 nginx
     ```
 3. 进入client容器测试读写：  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/%E8%BF%9B%E5%85%A5client%E5%AE%B9%E5%99%A8%E6%B5%8B%E8%AF%95%E8%AF%BB%E5%86%99.png)  
     >读写权限依赖于数据卷容器server
 4. 关闭数据卷容器，测试能否启动新容器：  
-    ![avagar]()  
+    ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/%E5%85%B3%E9%97%AD%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8%E4%BE%9D%E7%84%B6%E5%8F%AF%E4%BB%A5%E5%88%9B%E5%BB%BA%E6%96%B0%E5%AE%B9%E5%99%A8.png)  
 5. 删除数据卷容器，测试：
     + 浏览器访问：  
-        ![avagar]()  
+        ![avagar](https://github.com/aNswerO/note/blob/master/19th-week/pic/docker%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%AE%B9%E5%99%A8%E5%90%8E%E8%AE%BF%E9%97%AE%E6%B5%8B%E8%AF%95.png)  
         >删除了数据卷容器后，之前运行的容器依然可以访问到数据卷容器中挂载的数据卷的内容
     + 创建新容器：
         >由于新容器的创建基于之前的数据卷容器，但是它被删除了，所以无法创建新容器
